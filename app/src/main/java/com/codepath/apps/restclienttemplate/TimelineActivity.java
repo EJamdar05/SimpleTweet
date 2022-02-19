@@ -1,12 +1,19 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.activity.result.ActivityResult;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -27,6 +34,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
+    private static int REQUEST_CODE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,42 @@ public class TimelineActivity extends AppCompatActivity {
 
         populateHomeTimeline();
     }
+
+    @Override
+    //inflates menu resource file in this activity, use this resource file
+    //return true to show the menu inflator
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    //item in menu clicked do something with the compose tweet
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //refer back to icon
+        if(item.getItemId() == R.id.compose){
+            Intent intent = new Intent(this, ComposeActivity.class);
+            startActivityForResult(intent, REQUEST_CODE);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    //method called when coming from ComposeActivity
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // If the user comes back to this activity from EditActivity
+        // with no error or cancellation
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+            Tweet tweet = data.getParcelableExtra("tweet"); //data from intent
+
+            //update timeline by modding data src of tweets
+            tweets.add(0, tweet);
+            adapter.notifyItemInserted(0);
+            rvTweets.smoothScrollToPosition(0);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     private void loadMoreData() {
         // 1. Send an API request to retrieve appropriate paginated data
