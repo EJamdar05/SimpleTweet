@@ -8,15 +8,16 @@ Time spent: 5 hours spent in total
 
 The following **required** functionality is completed:
 
-- [✔️] User can **sign in to Twitter** using OAuth login
-- [✔️]	User can **view tweets from their home timeline**
-- [✔️] User is displayed the username, name, and body for each tweet
+- [✔️] User can compose a new tweet (5 points)
+- [✔️] User can then enter a new tweet and post this to twitter
+- [✔️] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
 - [✔️] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
 - [✔️] User can refresh tweets timeline by pulling down to refresh
+- [✔️] While composing a tweet, user can see a character counter with characters remaining for tweet out of 280
 
 The following **optional** features are implemented:
 
-- [✔️] User can view more tweets as they scroll with infinite pagination
+- [✔️] Improve the user interface and theme the app to feel "twitter branded" (1 to 5 points)
 - [✔️] Improve the user interface and theme the app to feel "twitter branded" (added splash screen)
 - [❌] Links in tweets are clickable and will launch the web browser
 - [❌] User can tap a tweet to display a "detailed" view of that tweet
@@ -32,15 +33,11 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='https://i.imgur.com/j5zgfAt.gif' title='Opening App' width='' alt='Opening App' />
-<img src='https://i.imgur.com/0sKsPas.gif' title='Going Through App' width='' alt='Going Through App' />
-
+<img src='https://i.imgur.com/XemkRXH.gif' title='Demo of App' width='' alt='Opening App' />
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-The API was giving me issues for a while but I managed to fix the issue so that I was able to use my own API key. Another issue was dealing with some old code base as i had to change or upgrade some packages. 
-
+The tutorial usage with Kotlin and having to translate certain things to Java was a bit of a learning curb but it was nto a big issue. The biggest one was probably the Percilable object but I managed to figure it out. 
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
