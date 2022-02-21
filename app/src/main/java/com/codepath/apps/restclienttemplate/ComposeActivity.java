@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 
@@ -67,7 +68,7 @@ public class ComposeActivity extends AppCompatActivity {
                 }else if(tweetContent.isEmpty()){
                     Toast.makeText(ComposeActivity.this,"Tweet field cannot be empty",
                             Toast.LENGTH_SHORT).show();
-                    //snackbar message (goes away after a few seconds)
+
                 }else{
                     Toast.makeText(ComposeActivity.this,"Char count is 240",
                             Toast.LENGTH_SHORT).show();
